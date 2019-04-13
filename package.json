@@ -1,0 +1,14 @@
+{
+	"name": "mirobot",
+	"version": "1.0.0",
+	"description": "Miro's High Tech Bot!",
+	"main": "bot.js",
+	"author": "Miro",
+	"dependencies": {
+		"discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+		"winston": "^3.2.1"
+	},
+	"scripts": {
+    	"start": "node bot.js"
+	}
+}
