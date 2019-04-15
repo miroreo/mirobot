@@ -1,14 +1,16 @@
 {
-	"name": "mirobot",
-	"version": "1.0.0",
-	"description": "Miro's High Tech Bot!",
-	"main": "bot.js",
-	"author": "Miro",
-	"dependencies": {
-		"discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
-		"winston": "^3.2.1"
-	},
-	"scripts": {
-		"start": "node bot.js"
-	}
+  "name": "mirobot",
+  "version": "1.0.0",
+  "description": "Miro/'s High Tech Bot!",
+  "main": "bot.js",
+  "author": "Miro",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "winston": "^3.2.1",
+    "discord.js": "^11.4.2",
+    "express": "^4.16.4"
+  },
+  "scripts": {
+    "start": "node bot.js & node server.js"
+  }
 }
