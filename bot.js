@@ -8,8 +8,14 @@ if(today.getMinutes() < 10) {
 else {
   var min = today.getMinutes();
 }
+if(today.getSeconds() < 10) {
+  var sec = "0" + today.getSeconds();
+}
+else {
+  var sec = today.getSeconds();
+}
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-var time = today.getHours() + ":" + min + ":" + today.getSeconds();
+var time = today.getHours() + ":" + min + ":" + sec;
 var dateTime = time;
 
 logger.remove(logger.transports.Console);
