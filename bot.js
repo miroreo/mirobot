@@ -8,12 +8,14 @@ if(today.getMinutes() < 10) {
 else {
   var min = today.getMinutes();
 }
+
 if(today.getSeconds() < 10) {
   var sec = "0" + today.getSeconds();
 }
 else {
   var sec = today.getSeconds();
 }
+
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var time = today.getHours() + ":" + min + ":" + sec;
 var dateTime = time;
@@ -84,7 +86,7 @@ bot.on("message", async message => {
   
 
   if(command === "time") {
-    message.channel.send("It is " + time + " on " + date );
+    message.channel.send("It is " + time);
     console.log('['+time+`] Time command used on '${message.guild}'`);
   }
   
