@@ -51,6 +51,10 @@ bot.on("message", async message => {
       .then(msg=> msg.delete(500))
     
   }
+  if(message.content.toLowerCase() === "gcd.help") {
+    message.channel.send("Documentation has been sent to your dms.");
+  }
+  
   if(message.content.toLowerCase() === "lol" || message.content.toLowerCase() === "lmao") {
     message.channel.send("HAHAHAHAHA that's very funny"); 
   }
@@ -111,9 +115,13 @@ bot.on("message", async message => {
   }
 
   if(command === "daphne") {
-    message.channel.send("I am a yo-yo!")
+    message.channel.send("I am a yo-yo!");
   }
-  
+
+  if(command === "kill") {
+    message.channel.send("Killing all users...")
+    message.channel.send("All users killed")
+  }
   if(command === "nehasfurryshit" || command === "nfs" ) {
 
     if(message.channel.nsfw === false) {
