@@ -1,6 +1,10 @@
-var Discord = require('discord.js');
-var logger = require('winston');
-
+const Discord = require('discord.js');
+const logger = require('winston');
+const https = require('https');
+const tbaBaseURL = 'www.thebluealliance.com';
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 var today = new Date();
 if(today.getMinutes() < 10) {
   var min = "0" + today.getMinutes();
@@ -28,7 +32,8 @@ bot.on('ready', function (evt) {
     console.log('[' + dateTime + `] Logged in as: ${bot.user.username} - (${bot.user.id})`);
     // logger.info(bot.username + ' - (' + bot.id + ')');
     // bot.user.setPresence({ game: { name: 'mirobot (!)', type: "playing"}}); 
-    bot.user.setActivity(`mirobot (!) | serving ${bot.guilds.size} servers`);
+    // bot.user.setActivity(`mirobot (!) | serving ${bot.guilds.size} servers`);
+    bot.user.setActivity('in 76 servers! gcd.help | gcd.guildLink');
     console.log('['+ dateTime + `] Activity changed to '${bot.user.presence.game}'`);
     // textLabel.innerHTML = `${bot.user.username}`;
    
@@ -43,18 +48,8 @@ bot.on("guildCreate", guild => {
 bot.on("message", async message => {
   // This event will run on every single message received, from any channel or DM.
   
-  // if(message.author.bot) return;
-  
-  if(message.content.toLowerCase() === "i do not like you.") {
-    message.channel.send("**Ice bot is currently blacklisting @miro#7551 and @SassIsBacker#9767**");
-    message = message.channel.send("$rep I am not nice because I think that it is fun to blacklist people trying to use me.")
-      .then(msg=> msg.delete(500))
-    
-  }
-  if(message.content.toLowerCase() === "gcd.help") {
-    message.channel.send("Documentation has been sent to your dms.");
-  }
-  
+  if(message.author.bot) return;
+
   if(message.content.toLowerCase() === "lol" || message.content.toLowerCase() === "lmao") {
     message.channel.send("HAHAHAHAHA that's very funny"); 
   }
@@ -114,14 +109,26 @@ bot.on("message", async message => {
     message.channel.send("HAHAHAHAHA that's funny"); 
   }
 
+  if(command === "mirobot.shutdown254") {
+    if(message.author.id === "156126755646734336"){
+      message.channel.send("I am now shutting down. Goodbye World.");
+      sleep(1000);
+      process.exit();
+    }
+    else{
+      message.channel.send("Error: You are not an authorized bot administrator.");
+    }
+  }
+
   if(command === "daphne") {
     message.channel.send("I am a yo-yo!");
   }
 
   if(command === "kill") {
-    message.channel.send("Killing all users...")
+    message.channel.send("Killing all users...");
     message.channel.send("All users killed")
   }
+
   if(command === "nehasfurryshit" || command === "nfs" ) {
 
     if(message.channel.nsfw === false) {
@@ -145,8 +152,6 @@ bot.on("message", async message => {
     }
 
   }
-  
-  
 });
 
 bot.login(process.env.TOKEN);
