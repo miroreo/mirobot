@@ -33,7 +33,7 @@ bot.on('ready', function (evt) {
     // logger.info(bot.username + ' - (' + bot.id + ')');
     // bot.user.setPresence({ game: { name: 'mirobot (!)', type: "playing"}}); 
     // bot.user.setActivity(`mirobot (!) | serving ${bot.guilds.size} servers`);
-    bot.user.setActivity('in 76 servers! gcd.help | gcd.guildLink');
+    bot.user.setActivity(`mirobot (!) | serving ${bot.guilds.size}`);
     console.log('['+ dateTime + `] Activity changed to '${bot.user.presence.game}'`);
     // textLabel.innerHTML = `${bot.user.username}`;
    
@@ -127,6 +127,10 @@ bot.on("message", async message => {
   if(command === "kill") {
     message.channel.send("Killing all users...");
     message.channel.send("All users killed")
+  }
+
+  if(command === "patrick") {
+    message.channel.send("Hi! Patrick is a chicken tendie! Make sure to give him all of the chickens...", {files: ["https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/7/28/2/YW0808H_baked-chicken-tenders-with-honey-mustard_s4x3.jpg.rend.hgtvcom.616.462.suffix/1476820959088.jpeg"]});
   }
 
   if(command === "nehasfurryshit" || command === "nfs" ) {
