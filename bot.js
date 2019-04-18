@@ -2,6 +2,10 @@ const Discord = require('discord.js');
 const logger = require('winston');
 const https = require('https');
 const tbaBaseURL = 'www.thebluealliance.com';
+const { client } =  require('pg');
+const client = new client({
+  connectionString: process.env.DATABASE_URL;
+};)
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -132,6 +136,8 @@ bot.on("message", async message => {
   if(command === "patrick") {
     message.channel.send("Hi! Patrick is a chicken tendie! Make sure to give him all of the chickens...", {files: ["https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/7/28/2/YW0808H_baked-chicken-tenders-with-honey-mustard_s4x3.jpg.rend.hgtvcom.616.462.suffix/1476820959088.jpeg"]});
   }
+
+  
 
   if(command === "nehasfurryshit" || command === "nfs" ) {
 
