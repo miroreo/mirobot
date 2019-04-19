@@ -2,10 +2,26 @@ const Discord = require('discord.js');
 const logger = require('winston');
 const https = require('https');
 const tbaBaseURL = 'www.thebluealliance.com';
-const { client } =  require('pg');
-const client = new client({
-  connectionString: process.env.DATABASE_URL;
-};)
+
+// DATABASE WORK
+const { Client } =  require('pg');
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
+});
+
+
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
