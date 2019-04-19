@@ -7,7 +7,7 @@ const tbaBaseURL = 'www.thebluealliance.com';
 const { Client } =  require('pg');
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: true
+  ssl: true,
 });
 
 client.connect();
