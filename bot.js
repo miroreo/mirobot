@@ -12,13 +12,7 @@ const client = new Client({
 
 client.connect();
 
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
+client.query('CREATE TABLE user_stats(user_id, number_lol, number_owo)');
 
 
 
@@ -153,7 +147,7 @@ bot.on("message", async message => {
     message.channel.send("Hi! Patrick is a chicken tendie! Make sure to give him all of the chickens...", {files: ["https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/7/28/2/YW0808H_baked-chicken-tenders-with-honey-mustard_s4x3.jpg.rend.hgtvcom.616.462.suffix/1476820959088.jpeg"]});
   }
 
-  
+  if(command === "create_")
 
   if(command === "nehasfurryshit" || command === "nfs" ) {
 
