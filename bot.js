@@ -123,6 +123,54 @@ bot.on("message", async message => {
     message.channel.send("HAHAHAHAHA that's funny"); 
   }
 
+  if(command === "tba") {
+    var teamNum = args[0];
+    var options = {
+        host: tbaBaseURL,
+        path: `/api/v3/team/frc${teamNum}`,
+        method: 'GET',
+        headers: {
+            'X-TBA-Auth-Key': process.env.TBAAUTH, 
+            'User-Agent': `Mirobot Discord Bot (${bot.user.username})`
+        }
+    };
+    var tbaResponse = ' ';
+    
+    https.get(options,function(res){
+        console.log("Connected to TBA");
+        var body = ' ';
+        res.on('data', function(chunk){
+            body += chunk;
+        });
+        res.on('end', function(done){
+          tbaResponse = JSON.parse(body);
+          console.log(tbaResponse.nickname);
+          message.channel.send({embed: {
+            "title": `Team ${teamNum}`,
+            "url": `https://www.thebluealliance.com/team/frc${teamNum}`,
+            "color": 407960,
+            "fields": [
+              {
+                "name": "Nickname",
+                "value": tbaResponse.nickname
+              },
+              {
+                "name": "Location",
+                "value": `${tbaResponse.city}, ${tbaResponse.state_prov}, ${tbaResponse.country}`
+              },
+              {
+                "name": "Rookie Year",
+                "value": tbaResponse.rookie_year
+              },
+              {
+                "name": "Website",
+                "value": tbaResponse.website
+              }
+            ]
+          }});
+        });
+      });
+    }
   if(command === "mirobot.shutdown254") {
     if(message.author.id === "156126755646734336"){
       message.channel.send("I am now shutting down. Goodbye World.");
