@@ -145,7 +145,9 @@ bot.on("message", async message => {
         res.on('end', function(done){
           tbaResponse = JSON.parse(body);
           console.log(tbaResponse.nickname);
-          message.channel.send({embed: {
+          message.channel.send({
+            content: `Here's what I found on team ${teamNum}: `,
+            embed: {
             "title": `Team ${teamNum}`,
             "url": `https://www.thebluealliance.com/team/frc${teamNum}`,
             "color": 407960,
