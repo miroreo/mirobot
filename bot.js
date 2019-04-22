@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const logger = require('winston');
 const https = require('https');
 const tbaBaseURL = 'www.thebluealliance.com';
+const toaBaseURL = 'www.theorangealliance.org';
 
 // DATABASE WORK
 const { Client } =  require('pg');
@@ -172,7 +173,60 @@ bot.on("message", async message => {
           }});
         });
       });
-    }
+  }
+
+  if(command === "toa") {
+    var teamNum = args[0];
+    var options = {
+        host: toaBaseURL,
+        path: `/api/team/${teamNum}`,
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-TOA-Key': process.env.TBAAUTH, 
+          'X-Application-Origin': `Mirobot Discord Bot (${bot.user.username})`
+        }
+    };
+    var tbaResponse = ' ';
+    
+    https.get(options,function(res){
+        console.log("Connected to TOA");
+        var body = ' ';
+        res.on('data', function(chunk){
+            body += chunk;
+        });
+        res.on('end', function(done){
+          toaResponse = JSON.parse(body);
+          console.log(toaResponse);
+          // message.channel.send({
+          //   content: `Here's what I found on team ${teamNum}: `,
+          //   embed: {
+          //   "title": `Team ${teamNum}`,
+          //   "url": `https://www.thebluealliance.com/team/frc${teamNum}`,
+          //   "color": 407960,
+          //   "fields": [
+          //     {
+          //       "name": "Nickname",
+          //       "value": tbaResponse.nickname
+          //     },
+          //     {
+          //       "name": "Location",
+          //       "value": `${tbaResponse.city}, ${tbaResponse.state_prov}, ${tbaResponse.country}`
+          //     },
+          //     {
+          //       "name": "Rookie Year",
+          //       "value": tbaResponse.rookie_year
+          //     },
+          //     {
+          //       "name": "Website",
+          //       "value": tbaResponse.website
+          //     }
+          //   ]
+          // }});
+        });
+      });
+  }
+
   if(command === "mirobot.shutdown254") {
     if(message.author.id === "156126755646734336"){
       message.channel.send("I am now shutting down. Goodbye World.");
@@ -196,8 +250,6 @@ bot.on("message", async message => {
   if(command === "patrick") {
     message.channel.send("Hi! Patrick is a chicken tendie! Make sure to give him all of the chickens...", {files: ["https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/7/28/2/YW0808H_baked-chicken-tenders-with-honey-mustard_s4x3.jpg.rend.hgtvcom.616.462.suffix/1476820959088.jpeg"]});
   }
-
-  if(command === "create_")
 
   if(command === "nehasfurryshit" || command === "nfs" ) {
 
