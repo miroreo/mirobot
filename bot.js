@@ -88,7 +88,7 @@ bot.on("message", async message => {
   }
   
   if(command === "help") {
-   message.channel.send("See https://discord-bot-mirobot.herokuapp.com/ for help!"); 
+   message.channel.send("See https://roblockhead.github.io/mirobot for help!"); 
   }
   
   if(command === "ping") {
